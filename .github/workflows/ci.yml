@@ -18,13 +18,10 @@ jobs:
       - name: Install prerequisites
         run: |
           sudo apt-get install openjdk-8-jdk wget curl git -y -q \
-          sudo wget https://dl.min.io/client/mc/release/linux-amd64/mc && \
-          sudo chmod +x mc && \
-          sudo mv mc /usr/local/bin/mc \
           sudo apt-get install npm \
           sudo apt-get install libfontconfig \
           sudo apt-get install r-base-dev \
-          sudo apt-get install r-cran-evaluate \
+          sudo apt-get install r-cran-evaluate 
       - name: Get Zeppelin sources
         run: git clone --depth 1 --branch v${ZEPPELIN_VERSION} https://github.com/apache/zeppelin.git ~/zeppelin
       - run: export MAVEN_OPTS="-Xss64m -Xmx2g -XX:ReservedCodeCacheSize=1g"
