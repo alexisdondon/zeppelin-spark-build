@@ -20,7 +20,7 @@ jobs:
           sudo apt-get install -f openjdk-8-jdk wget curl git npm libfontconfig r-base-dev -y -q 
       - name: Get Zeppelin sources
         run: git clone --depth 1 -b ${ZEPPELIN_VERSION} https://github.com/apache/zeppelin.git ~/zeppelin
-      - run: export MAVEN_OPTS="-Xss64m -Xmx2g -XX:ReservedCodeCacheSize=1g --bactch-mode"
+      - run: export MAVEN_OPTS="-Xss64m -Xmx2g -XX:ReservedCodeCacheSize=1g --batch-mode"
       - name: Build zeppelin from sources
         run: |
           cd ~/zeppelin && \
@@ -28,4 +28,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: Package
-          path: target
+          path: /zeppelin/target
