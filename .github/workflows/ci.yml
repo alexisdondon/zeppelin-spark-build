@@ -12,7 +12,7 @@ env:
   ZEPPELIN_VERSION : v0.10.1-rc1
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - run: sudo apt-get update
       - name: Install prerequisites
