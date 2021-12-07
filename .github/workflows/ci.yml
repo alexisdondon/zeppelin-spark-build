@@ -17,7 +17,7 @@ jobs:
       - run: sudo apt-get update
       - name: Install prerequisites
         run: |
-          sudo apt-get install -f openjdk-8-jdk wget curl git npm libfontconfig r-base-dev r-cran-evaluate  -y -q 
+          sudo apt-get install -f openjdk-8-jdk wget curl git npm libfontconfig r-base-dev -y -q 
       - name: Get Zeppelin sources
         run: git clone --depth 1 --branch v${ZEPPELIN_VERSION} https://github.com/apache/zeppelin.git ~/zeppelin
       - run: export MAVEN_OPTS="-Xss64m -Xmx2g -XX:ReservedCodeCacheSize=1g"
