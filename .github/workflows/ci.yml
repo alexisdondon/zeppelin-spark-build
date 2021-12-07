@@ -20,8 +20,12 @@ jobs:
           sudo apt-get install -f openjdk-8-jdk wget curl git npm libfontconfig r-base-dev -y -q 
       - name: Get Zeppelin sources
         run: git clone --depth 1 -b ${ZEPPELIN_VERSION} https://github.com/apache/zeppelin.git ~/zeppelin
-      - run: export MAVEN_OPTS="-Xss64m -Xmx2g -XX:ReservedCodeCacheSize=1g"
+      - run: export MAVEN_OPTS="-Xss64m -Xmx2g -XX:ReservedCodeCacheSize=1g --bactch-mode"
       - name: Build zeppelin from sources
         run: |
           cd ~/zeppelin && \
-          mvn clean package -Pbuild-distr -DskipTests -Pscala-2.11 -Pspark-${SPARK_VERSION} -Pspark-scala-2.12 
+          mvn clean package -Pbuild-distr -DskipTests -Pscala-2.11 -Pspark-${SPARK_VERSION} -Pspark-scala-2.12
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Package
+          path: target
