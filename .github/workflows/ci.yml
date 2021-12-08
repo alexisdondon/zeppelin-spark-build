@@ -21,6 +21,13 @@ jobs:
       - name: Get Zeppelin sources
         run: git clone --depth 1 -b ${ZEPPELIN_VERSION} https://github.com/apache/zeppelin.git ~/zeppelin
       - run: export MAVEN_OPTS="-Xss64m -Xmx2g -XX:ReservedCodeCacheSize=1g --batch-mode"
+      - uses: actions/cache@v1
+        with:
+          name: cache maven
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
       - name: Build zeppelin from sources
         run: |
           cd ~/zeppelin && \
